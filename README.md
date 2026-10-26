@@ -5,6 +5,6 @@ Each task lives in its own numbered folder.
 
 ## Tasks
 
-| # | Folder | Topic | Status |
-|---|--------|-------|--------|
-| – | – | – | – |
+| #  | Folder                                                | Topic                 | Status |
+|----|-------------------------------------------------------|-----------------------|--------|
+| 01 | [01-github-actions-basics](01-github-actions-basics/) | GitHub Actions basics | Done   |
