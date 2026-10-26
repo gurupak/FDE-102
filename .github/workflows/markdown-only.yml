@@ -1,0 +1,35 @@
+name: Markdown only
+
+on:
+  pull_request:
+    branches: [main]
+
+jobs:
+  only-markdown:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out the repo (full history)
+        uses: actions/checkout@v5
+        with:
+          fetch-depth: 0
+
+      - name: List files changed in this PR
+        run: |
+          BASE="${{ github.event.pull_request.base.sha }}"
+          # --diff-filter=d leaves out deleted files: removing a file is always OK
+          git diff --name-only --diff-filter=d "$BASE" HEAD > changed.txt
+          echo "Files changed in this PR:"
+          cat changed.txt
+
+      - name: Fail if any file is not allowed
+        run: |
+          # Keep only lines that DON'T match an allowed pattern
+          grep -vE '\.md$|^\.gitignore$|^\.github/workflows/[^/]+\.ya?ml$' changed.txt > bad.txt || true
+
+          if [ -s bad.txt ]; then           # -s = file exists and is not empty
+            echo "::error::Only Markdown (.md) files are allowed in this repo."
+            echo "These files are not allowed:"
+            cat bad.txt
+            exit 1                          # non-zero exit fails the check
+          fi
+          echo "All changed files are allowed ✅"
