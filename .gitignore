@@ -21,3 +21,6 @@ build/
 .DS_Store
 .vscode/
 .idea/
+
+# Local Claude Code instructions (not published)
+CLAUDE.md
