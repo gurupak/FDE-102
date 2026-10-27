@@ -9,3 +9,6 @@
 !.gitignore
 !.github/workflows/*.yml
 !.github/workflows/*.yaml
+
+# Keep local Claude Code instructions private (must come AFTER !*.md)
+CLAUDE.md
