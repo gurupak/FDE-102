@@ -1,6 +1,0 @@
-gh run list            - list recent workflow runs
-gh run watch           - follow a run live
-gh run view --log      - full log of a run
-gh pr checks --watch   - watch checks on a PR
-gh pr merge --squash   - merge a PR as one commit
-git check-ignore -v    - show which .gitignore line ignores a file
